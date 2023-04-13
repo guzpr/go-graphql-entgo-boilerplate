@@ -1,0 +1,17 @@
+extend type Mutation {
+  onboard(input: OnboardUserInput!): OnboardPayload 
+}
+
+type OnboardPayload {
+  userID: ID!
+}
+
+input OnboardUserInput {
+  userID: ID!
+  budgetPeriod: BudgetPeriodInput
+}
+
+input BudgetPeriodInput {
+  startDate: Date
+  endDate: Date
+}

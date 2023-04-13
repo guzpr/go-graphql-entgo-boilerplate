@@ -1,0 +1,39 @@
+# schema tells gqlgen where the GraphQL schema is located.
+schema:
+  - ../../internal/gql/ent.graphqls
+  - ../../internal/gql/models/models.graphqls
+  - ../../internal/domain/appuser/gql/schema/*
+  - ../../internal/domain/admin/gql/schema/*
+
+# Where should the generated server code go?
+exec:
+  filename: ../../internal/gql/generated.go
+  package: gql
+  
+# Where should any generated models go?
+model:
+  filename: ../../internal/gql/models_gen.go
+  package: gql
+
+# resolver reports where the resolver implementations go.
+resolver:
+  layout: follow-schema
+  dir:  ../../internal/gql
+  package: gql
+
+# gqlgen will search for any type names in the schema in these go packages
+# if they match it will use them, otherwise it will generate them.
+
+# autobind tells gqngen to search for any type names in the GraphQL schema in the
+# provided package. If they match it will use them, otherwise it will generate new.
+autobind:
+  - "github.com/sekalahita/epirus/internal/ent/gen"
+
+# This section declares type mapping between the GraphQL and Go type systems.
+models:
+  Node:
+    model:
+      - github.com/sekalahita/epirus/internal/ent/gen.Noder
+  Date:
+    model:
+      - github.com/sekalahita/epirus/internal/gql/models.Date
